@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <link href="/styles.css" rel="stylesheet" />
+    <title>Title</title>
+</head>
+<body>
+<h1>Welcome to the Cookiedoughm.</h1>
+<ul>
+    <li th:each="cookie: ${cookies}" th:text="${cookie}"></li>
+</ul>
+
+
+<form method="post" action="/add-cookie">
+    <label for="id">ID of cookie to edit (will make a new cookie if empty):</label>
+    <input type="number" name="id" id="id" />
+
+    <label for="diameter">Diameter:</label>
+    <input type="number" name="diameter" id="diameter"/>
+
+    <label for="isGlutenFree">Gluten Free?</label>
+    <input type="checkbox" name="isGlutenFree" id="isGlutenFree" />
+
+    <label for="isChocolateChip">Chocolate Chip?</label>
+    <input type="checkbox" name="isChocolateChip" id="isChocolateChip"/>
+
+    <label for="containsNuts">Contains Nuts?</label>
+    <input type="checkbox" name="containsNuts" id="containsNuts"/>
+
+
+    <input type="submit" value="MMM DELICIOUS COOKIES" />
+</form>
+</body>
+
+</html>
