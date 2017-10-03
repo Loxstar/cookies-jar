@@ -2,13 +2,14 @@ package com.theironyard.charlotte.cookiesjar.models;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cookies")
 public class Cookie {
     @Id // this is a primary key column
-    @GeneratedValue(strategy = GenerationType.SEQUENCE) // the value of "id" will be automatically generated
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @Column
     private int diameter;
@@ -22,6 +23,11 @@ public class Cookie {
     @Column
     private boolean glutenFree;
 
+    @OneToOne
+    private CookieSalesData salesData;
+
+    @ManyToMany
+    private List<Ingredient> ingredients;
 
     public Cookie() {
     }
@@ -31,6 +37,14 @@ public class Cookie {
         this.containsNuts = containsNuts;
         this.isChocolateChip = isChocolateChip;
         this.glutenFree = glutenFree;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public Integer getId() {
@@ -73,14 +87,27 @@ public class Cookie {
         this.glutenFree = glutenFree;
     }
 
+    public CookieSalesData getSalesData() {
+        return salesData;
+    }
+
+    public void setSalesData(CookieSalesData salesData) {
+        this.salesData = salesData;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Cookie{" +
-                "diameter=" + diameter +
+                "id=" + id +
+                ", diameter=" + diameter +
                 ", containsNuts=" + containsNuts +
                 ", isChocolateChip=" + isChocolateChip +
                 ", glutenFree=" + glutenFree +
-                ", id=" + id +
+                ", salesData=" + salesData +
                 '}';
     }
 }

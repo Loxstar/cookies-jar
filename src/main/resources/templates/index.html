@@ -13,17 +13,14 @@
 
 
 <form method="post" action="/add-cookie">
-    <label for="id">ID of cookie to edit (will make a new cookie if empty):</label>
-    <input type="number" name="id" id="id" />
-
     <label for="diameter">Diameter:</label>
     <input type="number" name="diameter" id="diameter"/>
 
-    <label for="isGlutenFree">Gluten Free?</label>
-    <input type="checkbox" name="isGlutenFree" id="isGlutenFree" />
+    <label for="glutenFree">Gluten Free?</label>
+    <input type="checkbox" name="glutenFree" id="glutenFree" />
 
-    <label for="isChocolateChip">Chocolate Chip?</label>
-    <input type="checkbox" name="isChocolateChip" id="isChocolateChip"/>
+    <label for="chocolateChip">Chocolate Chip?</label>
+    <input type="checkbox" name="chocolateChip" id="chocolateChip"/>
 
     <label for="containsNuts">Contains Nuts?</label>
     <input type="checkbox" name="containsNuts" id="containsNuts"/>
@@ -31,6 +28,22 @@
 
     <input type="submit" value="MMM DELICIOUS COOKIES" />
 </form>
+
+
+
+
+<h1>PURCHASE COOKIES</h1>
+<form action="/buy-cookie" method="post">
+    <label for="buyCookieId">Cookie ID:</label>
+    <input type="number" name="id" id="buyCookieId" />
+    <input type="submit" value="make purchase" />
+</form>
+
+<h1>PREVIOUSLY PURCHASED COOKIES</h1>
+<ul>
+    <li th:each="cookie: ${cookieSales}" th:text="${cookie}"></li>
+</ul>
+
 </body>
 
 </html>
